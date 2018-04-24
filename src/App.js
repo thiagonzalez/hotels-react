@@ -5,7 +5,7 @@ import Calendar from './Calendar';
 import Content from './Content';
 import Footer from './Footer';
 
-import './App.css';
+import './css/app.scss';
 
 class App extends Component {
   render() {

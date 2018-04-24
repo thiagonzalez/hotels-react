@@ -1,7 +1,10 @@
 import React, { Component } from 'react';
+import Rating from 'react-rating';
 
 class Filter extends Component {
   render() {
+    const rating = [1, 2, 3, 4, 5];
+    
     return(
       <aside id="filter">
         <h6 className="header-1">
@@ -29,60 +32,14 @@ class Filter extends Component {
           <span className="header-3">Stars</span>
 
           <ul>
-            <li>
-              <input id="star-1" type="checkbox" />
-              <label for="star-1">
-                <i className="fas fa-star"></i>
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i>
-              </label>
-            </li>
-
-            <li>
-              <input id="star-2" type="checkbox" />
-              <label for="star-2">
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i>
-              </label>
-            </li>
-
-            <li>
-              <input id="star-3" type="checkbox" />
-              <label for="star-3">
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="far fa-star"></i>
-                <i className="far fa-star"></i>
-              </label>
-            </li>
-
-            <li>
-              <input id="star-4" type="checkbox" />
-              <label for="star-4">
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="far fa-star"></i>
-              </label>
-            </li>
-
-            <li>
-              <input id="star-5" type="checkbox" />
-              <label for="star-5">
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-                <i className="fas fa-star"></i>
-              </label>
-            </li>
+            {rating.map(i =>
+              <li key={i}>
+                <input id={"star-" + i} type="checkbox" />
+                <label htmlFor={"star-" + i}>
+                  <Rating readonly initialRating={i} emptySymbol="far fa-star" fullSymbol="fas fa-star" />
+                </label>
+              </li>
+            )}
           </ul>
         </div>
       </aside>

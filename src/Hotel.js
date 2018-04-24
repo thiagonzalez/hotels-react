@@ -1,38 +1,38 @@
 import React, { Component } from 'react';
+import Rating from 'react-rating';
 
 class Hotel extends Component {
   render() {
+    const hotel = this.props.hotel;
+    hotel.price = Math.round(hotel.price);
+
     return(
       <article>
-        <img src="http://placehold.it/262x262/000" alt="title" className="thumbnail" />
+        <img src={hotel.image} alt={hotel.name} className="thumbnail" />
           
         <div className="description">
           <div className="rating">
-            <i className="fas fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i>
-            <i className="far fa-star"></i> 
+            <Rating readonly initialRating={hotel.rate} emptySymbol="far fa-star" fullSymbol="fas fa-star" />
           </div>
 
-          <h2 className="header-2">Hyatt Place Charlotte Airport/Lake Pointe</h2>
-          <p>This hotel is located 7 miles from downtown Charlotte and 5 miles from Charlotte Douglas International Airport</p>
+          <h2 className="header-2">{hotel.name}</h2>
+          <p>{hotel.description}</p>
 
           <div className="actions">
-            <a href="#" className="button button-smaller button-inactive">Book now</a>
-            <a href="#" className="button button-smaller button-secondary">Price history</a>
+            <button className="button button-smaller button-inactive">Book now</button>
+            <button className="button button-smaller button-secondary">Price history</button>
           </div>
         </div>
 
         <div className="information">
           <div className="item price-total">
             <span>Total <strong>8 nights</strong></span>
-            <span className="price">$670</span>
+            <span className="price">${hotel.price}</span>
           </div>
 
           <div className="item price-night">
             <span>Per night</span>
-            <span className="price">$670</span>
+            <span className="price">${hotel.price}</span>
           </div>
         </div>
       </article>  

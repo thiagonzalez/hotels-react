@@ -6,9 +6,9 @@ class Footer extends Component {
       <footer id="main-footer">
         <nav className="social">
           <ul>
-            <li className="icon-facebook"><a href="#" target="_blank"><i className="fab fa-facebook-f"></i></a></li>
-            <li className="icon-twitter"><a href="#" target="_blank"><i className="fab fa-twitter"></i></a></li>
-            <li className="icon-instagram"><a href="#" target="_blank"><i className="fab fa-instagram"></i></a></li>
+            <li className="icon-facebook"><a href="//facebook.com/" rel="noopener noreferrer" target="_blank"><i className="fab fa-facebook-f"></i></a></li>
+            <li className="icon-twitter"><a href="//twitter.com/" rel="noopener noreferrer" target="_blank"><i className="fab fa-twitter"></i></a></li>
+            <li className="icon-instagram"><a href="//instagram.com" rel="noopener noreferrer" target="_blank"><i className="fab fa-instagram"></i></a></li>
           </ul>
         </nav>
 
