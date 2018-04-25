@@ -37,79 +37,71 @@
   }
 }
 
-#calendar-picker-container {
-  .date-picker, .date-picker-wrapper { 
-    font-family: 'Heebo', Arial, sans-serif; 
-    font-size: 16px;
-    color: #555;
-    font-weight: normal;
-  }
+.DayPicker {
+  color: #555;
+  font-family: 'Heebo', Arial, sans-serif; 
+  font-size: 16px;
+  font-weight: normal;
+  width: 100%;
+  border-top: 1px solid #e3e3e3;
+  padding-top: 20px;
 
-  .drp_top-bar { display: none }
+  .DayPicker-NavButton {
+    top: -3px;
+    right: 0;
 
-  .date-picker-wrapper {
-    border: none;
-    padding: 0;
-    background: none;
-    box-shadow: none;
-
-    .month-wrapper { 
-      border: none; 
-
-      table {
-        td { padding-bottom: 10px }
-        .caption { height: 60px }
-      }
+    &.DayPicker-NavButton--prev {
+      left: 0;
+      margin: 0
     }
   }
 
-  .month1 {
-    width: 100%;
-    border-top: 1px solid #e3e3e3;
+  .DayPicker-Caption {
+    letter-spacing: 1.8px;
+    text-align: center;
   }
 
-  .week-name th { 
-    padding-bottom: 20px; 
+  .DayPicker-Month {
+    border-collapse: separate !important;
+    border-spacing: 0 8px !important;
+    margin: 0;
+    width: 100%;
+  }
+
+  .DayPicker-Weekday {
+    padding-bottom: 10px; 
     color: #b5b5b5;
     border-bottom: 1px solid #e3e3e3;
+    font-weight: bold;
   }
 
-  .month-element {
-    font-weight: normal;
-    text-transform: capitalize;
-
-    &:last-child {
-      &:before {
-        content: '/';
-        display: inline-block;
-        margin-right: 5px;
-        margin-left: 3px;
-      }
-    }
-  }
-
-  .day {
+  .DayPicker-Day {
+    border-radius: 0;
     font-size: 15px;
     height: 45px;
-    width: 45px;
     line-height: 45px;
+    margin: 0 0 10px;
     padding: 0;
-    margin: 0;
+    width: 45px;
 
-    &.real-today { background: none }
-    &.first-date-selected { border-radius: 50% 0 0 50% }
-
-    &.first-date-selected,
-    &.checked,
-    &.hovering { 
-      background-color: $color-secondary !important; 
-      color: #fff;
+    &:not(.DayPicker-Day--disabled):hover {
+      background-color: lighten($color-secondary, 25%) !important; 
+      border-radius: 50%;
+      color: #fff !important;
     }
 
-    &.last-date-selected { border-radius: 0 50% 50% 0 }
+    &.DayPicker-Day--today { color: #555 }
+
+    &.DayPicker-Day--selected {
+      background-color: $color-secondary !important;
+      border-radius: 0 !important;
+      color: #fff !important;
+    }
+
+    &.DayPicker-Day--start { border-radius: 50% 0 0 50% !important }
+    &.DayPicker-Day--end { border-radius: 0 50% 50% 0 !important }
   }
 }
-
 
 @media (max-width: 480px) { 
   #calendar {
