@@ -8,13 +8,29 @@ import Footer from './Footer';
 import './css/app.scss';
 
 class App extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      showResults: false,
+      from: undefined,
+      to: undefined,
+      numberOfNights: undefined
+    };
+  }
+
+  showResults() {
+    this.setState({
+      showResults: true
+    })
+  }
+
   render() {
     return (
       <div>
         <Header /> 
-        <Calendar />
+        <Calendar {...this.state} showResults={this.showResults.bind(this)} />
 
-        <Content />
+        { this.state.showResults ? <Content /> : null }
         
         <Footer />
       </div>

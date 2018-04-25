@@ -15,24 +15,19 @@ function formatDateDisplay(date, defaultText) {
 }
 
 class Calendar extends Component {
-  static defaultProps = { numberOfMonths: 1 }
-
   constructor(props) {
     super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
-    this.state = this.getInitialState();
-  }
-
-  getInitialState() {
-    return {
+    this.handleButtonClick = this.handleButtonClick.bind(this);
+    this.state = {
       from: undefined,
       to: undefined,
       numberOfNights: undefined
-    };
+    }
   }
 
   handleButtonClick() {
-    console.log('cliquei');
+    this.props.showResults();
   }
 
   handleDayClick(day, modifiers = {}) {

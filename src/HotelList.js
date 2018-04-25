@@ -7,24 +7,31 @@ class HotelList extends Component {
 
     this.state = {
       hotels: [],
+      loading: true
     };
   }
 
   componentDidMount() {
     fetch('https://www.raphaelfabeni.com.br/rv/hotels.json')
       .then(response => response.json())
-      .then(data => this.setState({ hotels: data.hotels }));
+      .then(data => this.setState({ hotels: data.hotels, loading: false }));
   }
 
   render() {
-    const { hotels } = this.state;
+    const { hotels, loading } = this.state;
 
-    return(
+    const list = loading ? (
+      <i className="fas fa-spinner" />
+    ) : (
       <div id="hotel-list">
         {hotels.map(hotel =>
           <Hotel key={hotel.name} hotel={hotel} />
         )}
       </div>
+    );
+
+    return(
+      <div>{list}</div>
     );
   }
 }
