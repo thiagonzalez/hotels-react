@@ -19,7 +19,7 @@ class Hotel extends Component {
           <p>{hotel.description}</p>
 
           <div className="actions">
-            <button className="button button-smaller button-inactive">Book now</button>
+            <button className="button button-smaller" disabled>Book now</button>
             <button className="button button-smaller button-secondary">Price history</button>
           </div>
         </div>
