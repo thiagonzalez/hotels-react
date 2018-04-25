@@ -84,10 +84,12 @@
     padding: 0;
     width: 45px;
 
-    &:not(.DayPicker-Day--disabled):hover {
-      background-color: lighten($color-secondary, 25%) !important; 
-      border-radius: 50%;
-      color: #fff !important;
+    @media (hover: hover) {
+      .DayPicker-Day:not(.DayPicker-Day--disabled):hover {
+        background-color: lighten($color-secondary, 25%) !important; 
+        border-radius: 50%;
+        color: #fff !important;
+      }
     }
 
     &.DayPicker-Day--today { color: #555 }
@@ -109,6 +111,13 @@
     margin-left: 10px;
     margin-right: 10px;
 
-    .description { display: none }
+    .description {
+      float: none;
+      padding-top: 20px;
+      text-align: center;
+      clear: both;
+
+      > div { display: none }
+    }
   }
 }

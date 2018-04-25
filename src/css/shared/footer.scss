@@ -18,7 +18,9 @@
       height: 34px;
       width: 34px;
 
-      &:hover { background-color: lighten($color-primary, 10%) }
+      @media (hover: hover) {
+        a:hover { background-color: lighten($color-primary, 10%) }
+      }
 
       i {
         color: #fff;

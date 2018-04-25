@@ -1,24 +1,14 @@
 import React, { Component } from 'react';
 import DayPicker, { DateUtils } from 'react-day-picker';
-import { format, differenceInCalendarDays } from 'date-fns';
+import { differenceInCalendarDays } from 'date-fns';
 import 'react-day-picker/lib/style.css';
-
-function formatDateDisplay(date, defaultText) {
-  if (!date) return defaultText;
-  return (
-    <span>
-      {format(date, 'MMMM ')}
-      <strong>{format(date, 'D')}</strong>
-      {format(date, ', YYYY')}
-    </span>
-  );
-}
 
 class Calendar extends Component {
   constructor(props) {
     super(props);
     this.handleDayClick = this.handleDayClick.bind(this);
     this.handleButtonClick = this.handleButtonClick.bind(this);
+
     this.state = {
       from: undefined,
       to: undefined,
@@ -28,6 +18,7 @@ class Calendar extends Component {
 
   handleButtonClick() {
     this.props.showResults();
+    this.props.changeDateRange(this.state);
   }
 
   handleDayClick(day, modifiers = {}) {
@@ -37,7 +28,7 @@ class Calendar extends Component {
     this.setState(range);
 
     if (range.from && range.to) {
-      this.setState({
+      this.setState({ 
         numberOfNights: differenceInCalendarDays(range.to, range.from)
       });
     }
@@ -53,7 +44,7 @@ class Calendar extends Component {
           
         <div className="calendar">
           <DayPicker
-            numberOfMonths={this.props.numberOfMonths}
+            numberOfMonths={1}
             selectedDays={[from, { from, to }]}
             modifiers={modifiers}
             onDayClick={this.handleDayClick}
@@ -66,15 +57,20 @@ class Calendar extends Component {
         <div className="description">
           <div className="item">
             <span className="title">Check-in</span>
-            <span className="date">{formatDateDisplay(from, 'Choose a Date')}</span>
+            <span className="date">{this.props.formatDateDisplay(from, 'Choose a Date')}</span>
           </div>
 
           <div className="item">
             <span className="title">Check-out</span>
-            <span className="date">{formatDateDisplay(to, 'Choose a Date')}</span>
+            <span className="date">{this.props.formatDateDisplay(to, 'Choose a Date')}</span>
           </div>
 
-          <button className="button" onClick={this.handleButtonClick} disabled={!numberOfNights}>Search hotels</button>
+          <button 
+            className="button" 
+            onClick={this.handleButtonClick} 
+            disabled={!numberOfNights}>
+              Search hotels
+          </button>
         </div>
       </div>
     );
