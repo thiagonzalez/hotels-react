@@ -31,6 +31,10 @@ class Calendar extends Component {
     };
   }
 
+  handleButtonClick() {
+    console.log('cliquei');
+  }
+
   handleDayClick(day, modifiers = {}) {
     if (modifiers.disabled) return;
 
@@ -45,7 +49,7 @@ class Calendar extends Component {
   }
 
   render() {
-    const { from, to } = this.state;
+    const { from, to, numberOfNights } = this.state;
     const modifiers = { start: from, end: to };
 
     return(
@@ -75,7 +79,7 @@ class Calendar extends Component {
             <span className="date">{formatDateDisplay(to, 'Choose a Date')}</span>
           </div>
 
-          <button className="button button-inactive">Search hotels</button>
+          <button className="button" onClick={this.handleButtonClick} disabled={!numberOfNights}>Search hotels</button>
         </div>
       </div>
     );

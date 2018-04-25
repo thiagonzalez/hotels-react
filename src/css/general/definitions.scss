@@ -73,7 +73,7 @@ p {
   margin-right: 20px;
   padding: 15px 45px;
 
-  &.button-inactive {
+  &:disabled {
     background: #fff;
     color: $color-primary;
     cursor: default;
