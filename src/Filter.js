@@ -1,7 +1,22 @@
 import React, { Component } from 'react';
 import Rating from 'react-rating';
+import InputRange from 'react-input-range';
+import 'react-input-range/lib/css/index.css';
 
 class Filter extends Component {
+  constructor(props) {
+    super(props);
+    
+    this.state = {
+      minValue: 0, 
+      maxValue: 600,
+      selectedValue: {
+        min: 0,
+        max: 600
+      }
+    };
+  }
+
   render() {
     const rating = [1, 2, 3, 4, 5];
     
@@ -15,17 +30,12 @@ class Filter extends Component {
         <div className="price-range">
           <span className="header-3">Price Range per <strong>night</strong></span>
 
-          <div id="price-slider" data-min-value="0" data-max-value="600"></div>
-
-          <div className="left">
-            <span>Min</span>
-            <strong id="price-slider-min-text" className="value"></strong>
-          </div>
-
-          <div className="right">
-            <span>Max</span>
-            <strong id="price-slider-max-text" className="value"></strong>
-          </div>
+          <InputRange
+          formatLabel={value => `$${value}`}
+            maxValue={this.state.maxValue}
+            minValue={this.state.minValue}
+            value={this.state.selectedValue}
+            onChange={value => this.setState({ selectedValue: value })} />
         </div>
 
         <div className="rating">

@@ -85,7 +85,7 @@
     width: 45px;
 
     @media (hover: hover) {
-      .DayPicker-Day:not(.DayPicker-Day--disabled):hover {
+      &:not(.DayPicker-Day--disabled):hover {
         background-color: lighten($color-secondary, 25%) !important; 
         border-radius: 50%;
         color: #fff !important;

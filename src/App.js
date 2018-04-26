@@ -14,12 +14,19 @@ class App extends Component {
     this.handleShowResults = this.handleShowResults.bind(this);
     this.handleFormatDateDisplay = this.handleFormatDateDisplay.bind(this);
     this.handleChangeDateRange = this.handleChangeDateRange.bind(this);
+    this.handleApiCall = this.handleApiCall.bind(this);
 
     this.state = {
-      showResults: false,
-      from: undefined,
-      to: undefined,
-      numberOfNights: undefined
+      dateRange: {
+        from: undefined,
+        to: undefined,
+        numberOfNights: undefined
+      },
+      hotels: {
+        hotelList: [],
+        loading: true
+      },
+      showResults: false
     };
   }
 
@@ -39,7 +46,16 @@ class App extends Component {
   }
 
   handleChangeDateRange(range) {
-    this.setState(range);
+    this.setState({dateRange: range});
+  }
+
+  handleApiCall(hotels) {
+    this.setState({ 
+      hotels: {
+        hotelList: hotels,
+        loading: false
+      }
+    })
   }
 
   render() {
@@ -47,7 +63,7 @@ class App extends Component {
       <div>
         <Header /> 
         <Calendar
-          {...this.state} 
+          {...this.state.dateRange}
           showResults={this.handleShowResults} 
           formatDateDisplay={this.handleFormatDateDisplay} 
           changeDateRange={this.handleChangeDateRange} />
@@ -55,6 +71,7 @@ class App extends Component {
         { this.state.showResults ? 
           <Content 
             {...this.state} 
+            ApiCall={this.handleApiCall}
             formatDateDisplay={this.handleFormatDateDisplay} /> 
         : 
           null 

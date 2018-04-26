@@ -17,8 +17,8 @@ class Calendar extends Component {
   }
 
   handleButtonClick() {
-    this.props.showResults();
     this.props.changeDateRange(this.state);
+    this.props.showResults();
   }
 
   handleDayClick(day, modifiers = {}) {

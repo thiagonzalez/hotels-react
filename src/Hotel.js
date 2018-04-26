@@ -26,8 +26,8 @@ class Hotel extends Component {
 
         <div className="information">
           <div className="item price-total">
-            <span>Total <strong>{this.props.numberOfNights} nights</strong></span>
-            <span className="price">${hotel.price * this.props.numberOfNights}</span>
+            <span>Total <strong>{this.props.dateRange.numberOfNights} nights</strong></span>
+            <span className="price">${hotel.price * this.props.dateRange.numberOfNights}</span>
           </div>
 
           <div className="item price-night">
