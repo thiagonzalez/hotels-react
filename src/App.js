@@ -15,6 +15,8 @@ class App extends Component {
     this.handleFormatDateDisplay = this.handleFormatDateDisplay.bind(this);
     this.handleChangeDateRange = this.handleChangeDateRange.bind(this);
     this.handleApiCall = this.handleApiCall.bind(this);
+    this.handleApiInformation = this.handleApiInformation.bind(this);
+    this.handleChangePriceRange = this.handleChangePriceRange.bind(this);
 
     this.state = {
       dateRange: {
@@ -26,8 +28,35 @@ class App extends Component {
         hotelList: [],
         loading: true
       },
+      filters: {
+        range: {
+          min: 0, 
+          max: 1000
+        },
+        selectedValue: {
+          min: 0,
+          max: 1000
+        }
+      },
       showResults: false
     };
+  }
+
+  handleChangePriceRange(range) {
+    console.log(range.max, range.min);
+
+    this.setState({ 
+      filters: {
+        range: {
+          min: this.state.filters.range.min, 
+          max: this.state.filters.range.max
+        },
+        selectedValue: { 
+          min: range.min,
+          max: range.max
+        }
+      }
+    });
   }
 
   handleFormatDateDisplay(date, defaultText) {
@@ -43,19 +72,43 @@ class App extends Component {
 
   handleShowResults() {
     this.setState({ showResults: true })
+    this.handleApiCall();
   }
 
   handleChangeDateRange(range) {
     this.setState({dateRange: range});
   }
 
-  handleApiCall(hotels) {
+  handleApiCall() {
+    fetch('https://www.raphaelfabeni.com.br/rv/hotels.json')
+      .then(response => response.json())
+      .then(data => this.handleApiInformation(data.hotels));
+  }
+
+  handleApiInformation(hotels) {
+    function getPrices(){
+      return hotels.map(hotel => hotel.price);
+    }
+
+    const minPrice = Math.min(...getPrices());
+    const maxPrice = Math.max(...getPrices());
+
     this.setState({ 
       hotels: {
         hotelList: hotels,
         loading: false
+      },
+      filters: {
+        range: {
+          min: Math.round(minPrice), 
+          max: Math.round(maxPrice)
+        },
+        selectedValue: {
+          min: Math.round(minPrice),
+          max: Math.round(maxPrice)
+        }
       }
-    })
+    });
   }
 
   render() {
@@ -72,6 +125,7 @@ class App extends Component {
           <Content 
             {...this.state} 
             ApiCall={this.handleApiCall}
+            changePriceRange={this.handleChangePriceRange}
             formatDateDisplay={this.handleFormatDateDisplay} /> 
         : 
           null 

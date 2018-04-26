@@ -7,19 +7,19 @@ class Filter extends Component {
   constructor(props) {
     super(props);
     
-    this.state = {
-      minValue: 0, 
-      maxValue: 600,
-      selectedValue: {
-        min: 0,
-        max: 600
-      }
-    };
+    this.changed = value => {
+      const range = this.props.range;
+      if ((value.min < range.min) || (value.max > range.max)) return;
+
+      this.props.changePriceRange(value);
+    }
   }
 
   render() {
     const rating = [1, 2, 3, 4, 5];
-    
+    const range = this.props.range;
+    const selectedValue = this.props.selectedValue;
+
     return(
       <aside id="filter">
         <h6 className="header-1">
@@ -31,11 +31,21 @@ class Filter extends Component {
           <span className="header-3">Price Range per <strong>night</strong></span>
 
           <InputRange
-          formatLabel={value => `$${value}`}
-            maxValue={this.state.maxValue}
-            minValue={this.state.minValue}
-            value={this.state.selectedValue}
-            onChange={value => this.setState({ selectedValue: value })} />
+            formatLabel={value => `$${value}`}
+            maxValue={range.max}
+            minValue={range.min}
+            value={selectedValue}
+            onChange={this.changed} />
+
+          <div className="left">
+            <span>Min</span>
+            <strong className="value">{selectedValue.min}</strong>
+          </div>
+
+          <div className="right">
+            <span>Max</span>
+            <strong className="value">{selectedValue.max}</strong>
+          </div>
         </div>
 
         <div className="rating">

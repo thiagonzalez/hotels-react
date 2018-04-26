@@ -18,26 +18,22 @@
   padding-bottom: 30px;
 
   .input-range { 
-    margin: 20px 0; 
+    margin: 20px 0 10px; 
   
     .input-range__label--min,
-    .input-range__label--max { display: none }
+    .input-range__label--max,
+    .input-range__label--value { display: none }
 
     .input-range__label-container { left: auto }
-
-    .input-range__label--value {
-      @extend .value;
-      bottom: -45px;
-      font-size: 22px; 
-      line-height: 32px;
-      letter-spacing: 2.5px;
-      opacity: 0.5;
-      top: auto;
-    }
 
     .input-range__track {
       height: 5px;
       &.input-range__track--active { background-color: $color-primary }
+    }
+
+    .input-range__slider-container {
+      margin-left: 8px;
+      &:last-child { margin-left: -16px; }
     }
 
     .input-range__slider {
@@ -46,11 +42,34 @@
       border-radius: 50%;
       border: 4px solid $color-primary;
       height: $size;
-      // outline: none;
-      // right: $size / -2 !important;
+      // margin-left: 0;
       margin-top: ((($size + 8px) / 2) + (5 / 2)) * -1;
       width: $size;
     }
+  }
+
+  .left, .right {
+    span { 
+      display: block;
+      font-size: 14px; 
+      line-height: 21px;
+    }
+
+    .value {
+      opacity: 0.5;
+
+      &:before {
+        content: '$';
+        display: inline-block;
+      }
+    }
+  }
+
+  .left { float: left }
+
+  .right { 
+    float: right; 
+    text-align: right;
   }
 }
 

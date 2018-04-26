@@ -11,21 +11,12 @@ class HotelList extends Component {
   render() {
     const { hotels } = this.props;
 
-    const list = hotels.loading ? (
-      <div id="hotel-list">
-        <i className="fa fa-spinner fa-spin fa-3x fa-fw" />
-        <span className="sr-only">Loading...</span>
-      </div>
-    ) : (
+    return(
       <div id="hotel-list">
         {hotels.hotelList.map(hotel =>
           <Hotel key={hotel.name} hotel={hotel} {...this.props} />
         )}
       </div>
-    );
-
-    return(
-      <div>{list}</div>
     );
   }
 }
