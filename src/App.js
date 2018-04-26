@@ -43,9 +43,7 @@ class App extends Component {
   }
 
   handleChangePriceRange(range) {
-    console.log(range.max, range.min);
-
-    this.setState({ 
+    this.setState({
       filters: {
         range: {
           min: this.state.filters.range.min, 
