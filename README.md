@@ -9,3 +9,9 @@ A GH-Page is available [here](https://thiagonzalez.github.io/hotels-react/).
 1. Run `npm install`
 2. Run `npm start`
 3. Access the page through `http://localhost:3000`
+
+## Didn't have time
+- Move external fonts to the JS
+- Modal with hotel history
+- Mobile design for the filter
+- Display a message when there is no hotel
