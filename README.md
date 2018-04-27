@@ -16,3 +16,4 @@ PS: I'm using the master branch only for deploy. Do not push anything to it.
 - Modal with hotel history
 - Mobile design for the filter
 - Display a message when there is no hotel
+- Testing
