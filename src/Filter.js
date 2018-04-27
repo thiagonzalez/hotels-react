@@ -42,10 +42,7 @@ class Filter extends Component {
 
     return(
       <aside id="filter">
-        <h6 className="header-1">
-          <i className="fas fa-filter"></i>
-          Filters
-        </h6>
+        <h6 className="header-1">Filters</h6>
           
         <div className="price-range">
           <span className="header-3">Price Range per <strong>night</strong></span>
