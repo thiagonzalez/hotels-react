@@ -17,6 +17,7 @@ class App extends Component {
     this.handleApiCall = this.handleApiCall.bind(this);
     this.handleApiInformation = this.handleApiInformation.bind(this);
     this.handleChangePriceRange = this.handleChangePriceRange.bind(this);
+    this.handleRating = this.handleRating.bind(this);
 
     this.state = {
       dateRange: {
@@ -105,8 +106,13 @@ class App extends Component {
           min: Math.round(minPrice),
           max: Math.round(maxPrice)
         }
-      }
+      },
+      rating: []
     });
+  }
+
+  handleRating(rating) {
+    this.setState(rating);
   }
 
   render() {
@@ -124,7 +130,8 @@ class App extends Component {
             {...this.state} 
             ApiCall={this.handleApiCall}
             changePriceRange={this.handleChangePriceRange}
-            formatDateDisplay={this.handleFormatDateDisplay} /> 
+            formatDateDisplay={this.handleFormatDateDisplay}
+            selectedRating={this.handleRating} /> 
         : 
           null 
         }

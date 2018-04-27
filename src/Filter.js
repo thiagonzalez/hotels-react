@@ -6,13 +6,33 @@ import 'react-input-range/lib/css/index.css';
 class Filter extends Component {
   constructor(props) {
     super(props);
+    this.handleCollectRatings = this.handleCollectRatings.bind(this);
     
-    this.changed = value => {
+    this.handleRangePrice = value => {
       const range = this.props.range;
       if ((value.min < range.min) || (value.max > range.max)) return;
 
       this.props.changePriceRange(value);
     }
+
+    this.state = {
+      rating: []
+    }
+  }
+
+  handleCollectRatings(e) {
+    const ratings = this.state.rating;
+    let index;
+
+    if (e.target.checked) {
+      ratings.push(e.target.value);
+    } else {
+      index = ratings.indexOf(e.target.value);
+      ratings.splice(index, 1);
+    }
+
+    this.setState({ rating: ratings });
+    this.props.selectedRating(this.state);
   }
 
   render() {
@@ -35,7 +55,7 @@ class Filter extends Component {
             maxValue={range.max}
             minValue={range.min}
             value={selectedValue}
-            onChange={this.changed} />
+            onChange={this.handleRangePrice} />
 
           <div className="left">
             <span>Min</span>
@@ -54,7 +74,7 @@ class Filter extends Component {
           <ul>
             {rating.map(i =>
               <li key={i}>
-                <input id={"star-" + i} type="checkbox" />
+                <input id={"star-" + i} type="checkbox" className="rating-checkbox" name="rating[]" value={i} onChange={this.handleCollectRatings} />
                 <label htmlFor={"star-" + i}>
                   <Rating readonly initialRating={i} emptySymbol="far fa-star" fullSymbol="fas fa-star" />
                 </label>

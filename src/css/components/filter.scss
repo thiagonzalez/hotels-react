@@ -105,9 +105,11 @@
 
 @media (max-width: 480px) {
   #filter {
+    margin-bottom: 20px;
+    
     &, .header-1 { margin-bottom: 15px }
 
     .header-1 { color: $color-primary }
-    > div { display: none }
+    // > div { display: none }
   }
 }

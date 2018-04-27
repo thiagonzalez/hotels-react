@@ -6,14 +6,14 @@ class Content extends Component {
   render() {
     const { hotels } = this.props;
 
-    const list = hotels.loading ? (
+    const content = hotels.loading ? (
       <div>
         <i className="fa fa-spinner fa-spin fa-3x fa-fw" />
         <span className="sr-only">Loading...</span>
       </div>
     ) : (
       <div>
-        <Filter changePriceRange={this.props.changePriceRange} {...this.props.filters} />
+        <Filter selectedRating={this.props.selectedRating} changePriceRange={this.props.changePriceRange} {...this.props.filters} />
         <HotelList {...this.props} />
       </div>
     );
@@ -23,7 +23,7 @@ class Content extends Component {
         <div className="container">
           <h5 className="header-1">Best choices between {this.props.formatDateDisplay(this.props.dateRange.from, 'Choose a Date')} and {this.props.formatDateDisplay(this.props.dateRange.to, 'Choose a Date')}</h5>
 
-          {list}
+          {content}
         </div>
       </section>
     );
