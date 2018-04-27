@@ -4,6 +4,7 @@ This project was made as a test for Red Ventures.
 
 ## Demo
 A GH-Page is available [here](https://thiagonzalez.github.io/hotels-react/).
+PS: I'm using the master branch only for deploy. Do not push anything to it.
 
 ## Usage
 1. Run `npm install`
